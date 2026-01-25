@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us | STRYD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ff4b2b;
+            --dark: #111;
+            --light: #ffffff;
+            --gray: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        /* ---------- Header ---------- */
+        .contact-header {
+            background: linear-gradient(135deg, #ff4b2b, #ff6a4d);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-header::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.05);
+            top: -50%;
+            left: -50%;
+            transform: rotate(25deg);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .contact-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-header p {
+            opacity: 0.95;
+            font-size: 1.1rem;
+        }
+
+        /* ---------- Layout ---------- */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        /* ---------- Info ---------- */
+        .contact-info h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* ---------- Form ---------- */
+        .contact-form {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.12),
+                0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        .contact-form button {
+            margin-top: 10px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background: var(--primary);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background: #e63e20;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <section class="contact-header">
+        <div class="header-content">
+            <h1>Contact STRYD</h1>
+            <p>Have questions? We’re just a step away.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container">
+        <div class="contact-wrapper">
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>
+                    Whether it’s about our shoes, orders, or anything else —
+                    feel free to reach out. We’re always happy to help.
+                </p>
+
+                <p>
+                    <strong>Email:</strong><br>
+                    <a href="mailto:kartikkumar3726@gmail.com">
+                        kartikkumar3726@gmail.com
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Location:</strong><br>
+                    New Delhi, India
+                </p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+
+                <form action="https://formspree.io/f/kartikkumar3726@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Your Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" pattern="[0-9]{10}"
+                            required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const message = document.getElementById("message").value;
+
+            if (!name || !email || !phone || !message) {
+                alert("Please fill all fields");
+                return;
+            }
+
+            if (phone.length !== 10) {
+                alert("Please enter a valid 10 digit mobile number");
+                return;
+            }
+
+            alert("Message sent successfully 🚀");
+
+            const mailBody =
+                `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0AMessage: ${message}`;
+
+            window.location.href =
+                `mailto:kartikkumar3726@gmail.com?subject=Contact from STRYD Website&body=${mailBody}`;
+
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>
