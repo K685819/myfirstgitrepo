@@ -2,424 +2,1147 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartik Jha | Web Developer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111' rx='12'></rect><text x='50' y='55' font-family='Space Mono, monospace' font-size='65' font-weight='700' fill='%2339FF14' text-anchor='middle' dominant-baseline='middle'>KJ</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&family=Work+Sans:wght@400;600&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stryd-Shoes Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome CDN -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* --- Global --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
 
-    <link rel="stylesheet" href="style.css">
+    body {
+      scroll-behavior: smooth;
+      background: #f5f5f5;
+    }
 
-    <style>
-        .btn-close-custom {
-            background: transparent;
-            border: 2px solid #000;
-            /* Bold Black Border */
-            color: #000;
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 0;
-            /* Sharp corners for brutalist look */
-            padding: 0.5rem 1.5rem;
-            transition: all 0.2s ease;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        .btn-close-custom:hover {
-            background: #000;
-            color: #fff;
-            transform: translateY(-3px);
-            /* Moves up slightly on hover */
-            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
-            /* Adds a shadow */
-        }
-    </style>
+    button {
+      cursor: pointer;
+    }
+
+    /* --- Navbar --- */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      padding: 10px 50px;
+    }
+
+    nav .logo {
+      font-size: 24px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ff4b2b;
+      transform: scale(1.1);
+    }
+
+    .cart-icon {
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4b2b;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 2px 6px;
+    }
+
+    /* --- Hamburger Menu for Mobile --- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    /* --- Mobile Menu --- */
+    @media(max-width:768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* --- Hero --- */
+    header {
+      height: 90vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('https://images.unsplash.com/photo-1606813909333-d5c8c8028b7c?fit=crop&w=1950&q=80') no-repeat center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    header .btn {
+      padding: 12px 30px;
+      background: #ff4b2b;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      transition: 0.3s, transform 0.3s;
+    }
+
+    header .btn:hover {
+      background: #ff416c;
+      transform: scale(1.1) rotate(-3deg);
+    }
+
+    /* --- Sections --- */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    section p {
+      font-size: 16px;
+      color: #555;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* --- Banner Images --- */
+    .banner {
+      width: 100%;
+      margin: 40px 0;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .banner img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .banner img:hover {
+      transform: scale(1.05);
+    }
+
+    /* --- Products --- */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .product-card {
+      background: #fff;
+      padding: 15px;
+      width: 230px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: transform 0.3s;
+    }
+
+    .product-card h3 {
+      margin-bottom: 8px;
+      color: #ff4b2b;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .product-card p {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .product-card button {
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: none;
+      background: #ff4b2b;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-card button:hover {
+      background: #ff416c;
+      transform: scale(1.05);
+    }
+
+    /* --- Contact --- */
+    .contact form {
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .contact input:focus,
+    .contact textarea:focus {
+      border-color: #ff4b2b;
+      box-shadow: 0 0 8px rgba(255, 75, 43, 0.3);
+      outline: none;
+    }
+
+    .contact button {
+      padding: 12px;
+      border-radius: 30px;
+      border: none;
+      background: #ff4b2b;
+      color: #fff;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .contact button:hover {
+      background: #ff416c;
+      transform: scale(1.05);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* --- Responsive Layout --- */
+    @media(max-width:1024px) {
+      header h1 {
+        font-size: 42px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .product-card {
+        width: 45%;
+      }
+    }
+
+    @media(max-width:768px) {
+      header h1 {
+        font-size: 36px;
+      }
+
+      header p {
+        font-size: 14px;
+      }
+
+      .product-card {
+        width: 80%;
+      }
+
+      section h2 {
+        font-size: 28px;
+      }
+    }
+
+    @media(max-width:480px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      header p {
+        font-size: 13px;
+      }
+
+      .product-card {
+        width: 100%;
+      }
+    }
+
+    /* Header styling */
+    #home {
+      background: url('images/header-bg.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Container to hold logo + text */
+
+
+    /* Logo in navbar */
+    #navbar .logo {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      z-index: 100;
+
+    }
+
+
+    #navbar .logo img {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+      transition: 0.3s;
+
+    }
+
+
+    #navbar .logo img:hover {
+      transform: scale(1.05);
+
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-text {
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      color: #ff4b2b;
+    }
+
+    .slide-text h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-text p {
+      font-size: 24px;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-text .btn {
+      padding: 12px 30px;
+      background: #ff4b2b;
+      border: none;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s, transform 0.3s;
+
+    }
+
+    .slide-text .btn:hover {
+      background: #ff416c;
+      transform: scale(1.1);
+    }
+
+    #nav-link {
+      justify-content: center;
+    }
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100px;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      background: white;
+      z-index: 999;
+    }
+
+    /* Logo */
+    #navbar .logo {
+      flex: 1;
+      border: none;
+    }
+
+    #navbar .logo img {
+      height: 100px;
+      border: none;
+    }
+
+    /* Center Nav Items */
+    #nav-links {
+      flex: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 35px;
+      list-style: none;
+    }
+
+    #nav-links li a {
+      color: black;
+      font-size: 16px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    #nav-links li a:hover {
+      color: #ff4b2b;
+    }
+
+    /* Right Side (Cart + Hamburger) */
+    .cart-icon {
+      margin-left: 20px;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      background: red;
+      color: #fff;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+    }
+
+    /* 3D Hover Animation for Product Cards */
+    .product-card {
+      perspective: 1000px;
+      /* Enables 3D effect */
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Optional: smooth image tilt inside the card */
+    .product-card img {
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+      transform: translateZ(30px) scale(1.05);
+    }
+
+    /* footer  */
+    footer {
+      background-color: #111;
+      color: #fff;
+      padding: 40px 20px 20px 20px;
+      font-size: 14px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      gap: 30px;
+    }
+
+    .footer-container div {
+      flex: 1 1 200px;
+    }
+
+    .footer-about h3,
+    .footer-links h3,
+    .footer-social h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      color: #ff4500;
+    }
+
+    .footer-about p {
+      line-height: 1.6;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+      color: #ff4500;
+    }
+
+    .footer-terms {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    .footer-social {
+text-align: center;
+margin-top: 20px;
+}
+
+
+.footer-social h3 {
+color: #ff4500;
+margin-bottom: 18px;
+font-size: 18px;
+}
+
+
+.footer-socials {
+display: flex;
+justify-content: center;
+gap: 18px;
+}
+
+
+.footer-socials a {
+width: 40px;
+height: 40px;
+background: #333;
+color: #fff;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+font-size: 18px;
+transition: 0.3s ease;
+text-decoration: none;
+}
+
+
+.footer-socials a:hover {
+background: #ff6b6b;
+transform: translateY(-4px);
+}
+
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      /* border-top: 1px solid #333; */
+      padding-top: 15px;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-social .social-icons a {
+        margin-right: 10px;
+      }
+    }
+
+    /* 🔥 Responsive */
+    @media(max-width: 768px) {
+      #nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #000;
+        display: none;
+        padding: 20px 0;
+      }
+
+      #nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+
+    /* Responsive */
+    @media(max-width:1024px) {
+      .slide-text h1 {
+        font-size: 42px;
+      }
+
+      .slide-text p {
+        font-size: 20px;
+      }
+
+      .slide-text p {
+        font-size: 20px;
+      }
+
+      .slide-text h1 {
+        left: 25px;
+      }
+
+      .slide-text p {
+        left: 25px;
+      }
+    }
+
+    @media(max-width:768px) {
+      .slide-text h1 {
+        font-size: 36px;
+      }
+
+      .slide-text p {
+        font-size: 16px;
+      }
+
+      .slide-text .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      .slide-text h1 {
+        left: 25px;
+      }
+
+      .slide-text p {
+        left: 25px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .slide-text h1 {
+        font-size: 28px;
+      }
+
+      .slide-text p {
+        font-size: 14px;
+      }
+
+      .slide-text h1 {
+        left: 25px;
+      }
+
+      .slide-text p {
+        left: 25px;
+      }
+    }
+
+    /* ============================= */
+    /* RESPONSIVE FIXES – SAFE PATCH */
+    /* ============================= */
+
+    /* Navbar Fix */
+    @media (max-width: 1024px) {
+      #navbar {
+        height: 80px;
+        padding: 0 20px;
+      }
+
+      #navbar .logo img {
+        height: 70px;
+      }
+
+      #nav-links {
+        gap: 25px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #navbar {
+        height: 70px;
+      }
+
+      #navbar .logo img {
+        height: 55px;
+      }
+
+      #nav-links {
+        top: 70px;
+        background: #111;
+        width: 100%;
+        left: 0;
+        text-align: center;
+      }
+
+      #nav-links li {
+        padding: 12px 0;
+      }
+
+      .cart-icon {
+        color: black;
+        font-size: 22px;
+      }
+    }
+
+    /* Slider Text Fix */
+    @media (max-width: 1024px) {
+      .slide-text {
+        left: 35%;
+      }
+
+      .slide-text h1 {
+        font-size: 40px;
+      }
+
+      .slide-text p {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slide-text {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 90%;
+      }
+
+      .slide-text h1 {
+        font-size: 32px;
+      }
+
+      .slide-text p {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slide-text h1 {
+        font-size: 26px;
+      }
+
+      .slide-text p {
+        font-size: 14px;
+      }
+
+      .slide-text .btn {
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+    }
+
+    /* Product Cards Fix */
+    @media (max-width: 1024px) {
+      .product-card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .products {
+        gap: 15px;
+      }
+
+      .product-card {
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-card {
+        width: 100%;
+      }
+    }
+
+    /* Banner Images Fix */
+    @media (max-width: 768px) {
+      .banner img {
+        height: auto;
+        border-radius: 10px;
+      }
+    }
+
+    /* Cart Popup Fix */
+    @media (max-width: 480px) {
+      #cart-popup {
+        right: 10px;
+        width: 90%;
+      }
+    }
+
+    /* Contact Form Fix */
+    @media (max-width: 480px) {
+      .contact form {
+        width: 100%;
+        padding: 0 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="cursor cursor-ring"></div>
-    <div class="cursor cursor-dot"></div>
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="#home" class="logo">
+      <img src="Brand_Logo.png" alt="Stryd Logo">
+    </a>
+    <ul id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="About us.html">About</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="cart-icon" onclick="toggleCart()">🛒<span class="cart-count" id="cart-count">0</span></div>
+  </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">KARTIK JHA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto text-center">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Work</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
+  <!-- Hero -->
+  <!-- Hero Slider -->
+  <header id="home">
+    <div class="slider-container">
+      <!-- Slide 1 -->
+      <div class="slide active">
+        <img src="Shose banner 1.png" alt="Slide 1">
+        <div class="slide-text">
+          <h1>Stryd</h1>
+          <p style="color: #000; font-weight: bold;">Step into style with our premium shoe collection</p>
+          <button class="btn" onclick="scrollToSection('products')">Shop Now</button>
         </div>
-    </nav>
-
-    <section id="home">
-        <div id="tsparticles-hero"></div>
-
-        <div class="container text-center">
-            <h1 data-aos="fade-up">
-                Building Impressive <br>Digital Experiences <span id="typed-text"></span>
-            </h1>
-
-
-            <a href="#projects" class="btn btn-custom mt-3" data-aos="fade-up" data-aos-delay="400">View My Work</a>
-            <div class="hero-socials mt-5" data-aos="fade-up" data-aos-delay="600">
-                <a href="https://www.linkedin.com/in/kartik-kumar-64643a319" target="_blank"><i
-                        class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/Lazyboyharsh" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.instagram.com/kartik__0667?igsh=a2J5cGZ0eG8yazB4" target="_blank"><i
-                        class="fa-brands fa-instagram"></i></a>
-                <!-- <a href="https://discord.com/users/lazyboyharsh" target="_blank"><i class="fa-brands fa-discord"></i></a> -->
-            </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="Shose banner 2.png" alt="Slide 2">
+        <div class="slide-text">
+          <h1>New Arrivals</h1>
+          <p style="color: #000; font-weight: bold;">Discover the latest trends in shoes</p>
+          <button class="btn" onclick="scrollToSection('products')">Shop Now</button>
         </div>
-    </section>
-
-    <section id="about" class="bg-white">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <h2 class="section-title">ABOUT ME</h2>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-center" data-aos="fade-right">
-                    <img src="myportdp.png" alt="Harsh Jain" class="profile-pic">
-                </div>
-                <div class="col-lg-8" data-aos="fade-left">
-                    <p class="fs-5">Hello! I’m Kartik Jha, a passionate and motivated Web Developer with a strong
-                        interest in building modern, responsive, and user-friendly web applications. I enjoy turning
-                        ideas into real, functional websites using clean code and creative design. As a fresher, I am
-                        highly enthusiastic about learning new technologies and continuously improving my skills.
-                    </p>
-                    <p class="fs-5 mt-3">I have hands-on experience working with HTML, CSS, Bootstrap, JavaScript,
-                        React, PHP, and MySQL, and I have successfully completed multiple projects including e-commerce
-                        websites, blog platforms, and front-end web applications. I focus on creating websites that are
-                        not only visually appealing but also efficient, fast, and easy to use.</p>
-                </div>
-            </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="Shose banner 3 .png" alt="Slide 3">
+        <div class="slide-text">
+          <h1>Comfort & Style</h1>
+          <p style="color: #000; font-weight: bold;">Comfort meets style in every step</p>
+          <button class="btn" onclick="scrollToSection('products')">Shop Now</button>
         </div>
-    </section>
+      </div>
+    </div>
+  </header>
 
-    <div class="skills-marquee">
-        <div class="marquee-content">
-            <span class="skill-tag">HTML & Advanced CSS</span>
-            <span class="skill-tag">JavaScript (ES6+)</span>
-            <span class="skill-tag">Bootstrap & Tailwind</span>
-            <span class="skill-tag">PHP&MY SQL</span>
-            <span class="skill-tag">Git & GitHub</span>
-            <span class="skill-tag">AI Tools & Prompting</span>
+  <!-- Banner -->
+  <div class="banner"><img src="Shose banner 4.png" alt="Banner"></div>
 
-            <span class="skill-tag">HTML & Advanced CSS</span>
-            <span class="skill-tag">JavaScript (ES6+)</span>
-            <span class="skill-tag">Bootstrap & Tailwind</span>
-            <span class="skill-tag">PHP&MY SQL</span>
-            <span class="skill-tag">Git & GitHub</span>
-            <span class="skill-tag">AI Tools & Prompting</span>
+  <!-- Products -->
+  <section id="products">
+    <h2>Featured Shoes Collection</h2>
+    <div class="products" id="products-list"></div>
+  </section>
+
+  <!-- Banner -->
+  <div class="banner"><img src="Shose banner 5 .png" alt="Banner" height="600px" width="100%"></div>
+
+  <!-- New Arrivals -->
+  <section id="new-arrivals">
+    <h2>New Arrivals</h2>
+    <div class="products" id="new-products-list"></div>
+  </section>
+
+  <!-- Best Sellers -->
+  <section id="best-sellers">
+    <h2>Best Sellers</h2>
+    <div class="products" id="best-products-list"></div>
+  </section>
+
+  <!-- Contact -->
+  <!-- <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form onsubmit="submitForm(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section> -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- About Section -->
+      <div class="footer-about">
+        <h3>About STRYD</h3>
+        <p>STRYD brings you the latest trends in shoes, combining style and comfort in every step.</p>
+      </div>
+
+      <!-- Quick Links & Terms -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="About us.html">About Us</a></li>
+          <li><a href="contact.html">Connect</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <!-- Footer Social Section -->
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="footer-socials">
+          <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
+      </div>
+    </div>
+    </div>
+    </div>
     </div>
 
-    <section id="experience">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <h2 class="section-title">EXPERIENCE</h2>
-            </div>
-            <div class="col-lg-8 mx-auto">
-                <div class="experience-item" data-aos="fade-up">
-                    <h3>Web Developer</h3>
-                    <p class="meta">Elite Bandhan.com | Jan 2026 - Present</p>
-                    <p>Designed and developed a modern, responsive multi-page website using HTML, Tailwind CSS,
-                        Bootstrap, JavaScript,Php & My SQL AOS animations to enhance user engagement and brand presence.</p>
-                </div>
-                <!-- <div class="experience-item" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Web Developer Intern</h3> 
-                    <p class="meta">Pantech Ai (Remote) | May 2024 - Aug 2024</p> 
-                    <p>Developed responsive web applications using HTML, CSS, and JavaScript. Received regular training to enhance backend development and database integration skills.</p>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="bg-white">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <h2 class="section-title">FEATURED PROJECTS</h2>
-            </div>
-            <div class="row">
-
-                <div class="col-lg-6 mb-5" data-aos="fade-right">
-                    <div class="card card-brutalist">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">Elite bandhan Website</h4>
-                            <p class="card-text">Working as a Web Developer Intern, contributing to the development and
-                                maintenance of company websites.
-                                Built and optimized responsive web pages using HTML, CSS, Bootstrap, and JavaScript</p>
-                            <button class="btn btn-custom" data-bs-toggle="modal"
-                                data-bs-target="#project1Modal">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 mb-5" data-aos="fade-left">
-                    <div class="card card-brutalist">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">Weather Web</h4>
-                            <p class="card-text">A dynamic weather app using API data with a background that changes
-                                based on the weather.</p>
-                            <button class="btn btn-custom" data-bs-toggle="modal"
-                                data-bs-target="#project2Modal">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 mb-5" data-aos="fade-right">
-                    <div class="card card-brutalist">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">My Portfolio</h4>
-                            <!-- <span class="badge bg-dark text-white mb-2">Ecommerce</span> -->
-                            <p class="card-text">Made My Portfolio For Showing My Technical Skill Using Html CSS Java Script Web3 Form</p>
-                            <button class="btn btn-custom" data-bs-toggle="modal"
-                                data-bs-target="#project3Modal">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-           <div class="col-lg-6 mb-5" data-aos="fade-left">
-                    <div class="card card-brutalist">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">Stryd-Shoes Store</h4>
-                            <span class="badge bg-dark text-white mb-2">Stryd-Shoes Store</span>
-                            <p class="card-text">A responsive personal showcase site designed to highlight professional
-                                skills and creative projects.</p>
-                            <button class="btn btn-custom" data-bs-toggle="modal"
-                                data-bs-target="#project4Modal">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div class="col-lg-6 mb-5" data-aos="fade-right">
-                    <div class="card card-brutalist">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">Mrs Cutlery</h4>
-                            <span class="badge bg-dark text-white mb-2">Company Catalog</span>
-                            <p class="card-text">An elegant digital catalog for a cutlery brand, allowing customers to
-                                explore product collections.</p>
-                            <button class="btn btn-custom" data-bs-toggle="modal"
-                                data-bs-target="#project5Modal">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 mb-5" data-aos="fade-left">
-                    <div class="card card-brutalist">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">Namo Production</h4>
-                            <span class="badge bg-dark text-white mb-2">Company Profile</span>
-                            <p class="card-text">A corporate profile website for a production house, detailing services
-                                and portfolio highlights.</p>
-                            <button class="btn btn-custom" data-bs-toggle="modal"
-                                data-bs-target="#project6Modal">Details</button>
-                        </div>
-                    </div>
-                </div> 
-
-            </div>
-        </div> -->
-    </section>
-    <section id="contact">
-        <div class="container" data-aos="fade-up">
-            <div class="text-center">
-                <h2 class="section-title">GET IN TOUCH</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                        <input type="hidden" name="apikey" value="43228d3f-2289-4c02-844f-cb1abf456a8d">
-                        <input id="formName" class="form-control" type="text" name="name" placeholder="Your Name"
-                            required>
-                        <input id="formEmail" class="form-control" type="email" name="email" placeholder="Your Email"
-                            required>
-                        <textarea id="formMessage" class="form-control" name="message" rows="4"
-                            placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn btn-custom">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container text-center">
-            <div class="social-links mb-3">
-                <div class="hero-socials mt-5" data-aos="fade-up" data-aos-delay="600">
-                    <a href="https://www.linkedin.com/in/kartik-kumar-64643a319" target="_blank"><i
-                            class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/Lazyboyharsh" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.instagram.com/kartik__0667?igsh=a2J5cGZ0eG8yazB4" target="_blank"><i
-                            class="fa-brands fa-instagram"></i></a>
-                </div>
-                <p class="mb-0">&copy; 2026 Kartik Jha. All Rights Reserved.</p>
-            </div>
-    </footer>
-
-    <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="project1ModalLabel">EliteBandhan Website</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Goal:</strong> To modernize the company's official website.</p>
-                    <p><strong>My Role:</strong> I was the primary web developer responsible for the design,
-                        development, and deployment.</p>
-                    <div>
-                        <strong>Technologies:</strong><br>
-                        <span class="tech-badge">HTML</span>
-                        <span class="tech-badge">CSS</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">Bootstrap</span>
-                        <span class="tech-badge">Php</span>
-                        <span class="tech-badge">Sql</span>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="http://elitebandhan.com" class="btn btn-custom" target="_blank">View Live</a>
-                    <button type="button" class="btn btn-close-custom" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+    <div class="footer-bottom">
+      &copy; 2026 STRYD. All Rights Reserved.
     </div>
+  </footer>
 
-    <div class="modal fade" id="project2Modal" tabindex="-1" aria-labelledby="project2ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="project2ModalLabel">Weather Web</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Goal:</strong> To build a functional and visually dynamic weather application.</p>
-                    <p><strong>My Role:</strong> I handled the entire development process, from fetching API data to UI.
-                    </p>
-                    <div>
-                        <strong>Technologies:</strong><br>
-                        <span class="tech-badge">HTML</span>
-                        <span class="tech-badge">CSS</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">Weather API</span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="https://k685819.github.io/weatherr/" class="btn btn-custom" target="_blank">View
-                        Live</a>
-                    <button type="button" class="btn btn-close-custom" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <!-- Cart -->
+  <div id="cart-popup"
+    style="position:fixed;top:80px;right:20px;width:280px;background:#fff;border-radius:15px;padding:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);display:none;z-index:2000;">
+    <h3>Cart</h3>
+    <ul id="cart-items" style="list-style:none;padding:0;"></ul>
+    <p>Total: ₹<span id="cart-total">0</span></p>
+    <button onclick="checkout()"
+      style="padding:10px 20px;border:none;border-radius:20px;background:#ff4b2b;color:#fff;cursor:pointer;">Checkout</button>
+  </div>
 
-    <div class="modal fade" id="project3Modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">My Portfolio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Goal:</strong> Create a Animated Portfolio For showing My Skill </p>
-                    <p><strong>Features:</strong>Animated Hero Section Along With JavaScript Funtionalties</p>
-                    <!-- <div>
-                        <strong>Category:</strong> Ecommerce<br>
-                    </div> -->
-                </div>
-                <div class="modal-footer">
-                    <a href="#" target="_blank" class="btn btn-custom">View Live</a>
-                    <button type="button" class="btn btn-close-custom" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <script>
+    // Hamburger menu toggle
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('active');
+    }
 
-     <div class="modal fade" id="project4Modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Stryd-Shoes Store</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Goal:</strong> A digital resume to showcase skills and experience.</p>
-                    <p><strong>Features:</strong> Smooth scrolling, brutalist design, and contact form integration.</p>
-                    <strong>Technologies:</strong><br>
-                        <span class="tech-badge">HTML</span>
-                        <span class="tech-badge">CSS</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">Bootstrap</span>
-                </div>
-                <div class="modal-footer">
-                    <a href="https://k685819.github.io/myfirstgitrepo/" target="_blank" class="btn btn-custom">View
-                        Live</a>
-                    <button type="button" class="btn btn-close-custom" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div> 
+    // Smooth scroll
+    function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
 
-    <!-- <div class="modal fade" id="project5Modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Mrs Cutlery</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Goal:</strong> A digital catalog for a premium cutlery brand.</p>
-                    <p><strong>Focus:</strong> High-quality imagery, elegant typography, and brand storytelling.</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="https://mrscutlery.vercel.app/" target="_blank" class="btn btn-custom">View Live</a>
-                    <button type="button" class="btn btn-close-custom" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    // Navbar scroll
+    window.addEventListener('scroll', function () { const navbar = document.getElementById('navbar'); if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); } });
 
-    <div class="modal fade" id="project6Modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Namo Production</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Goal:</strong> Corporate profile for a video production house.</p>
-                    <p><strong>Features:</strong> Portfolio gallery, service listing, and client testimonials.</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="https://lazyboyharsh.github.io/namo-production/index.html" target="_blank"
-                        class="btn btn-custom">View Live</a>
-                    <button type="button" class="btn btn-close-custom" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-    <script src="script.js"></script>
+    // Form submit
+    function submitForm(e) { e.preventDefault(); alert("Thank you! Your message has been sent."); e.target.reset(); }
+
+    // Products Data
+    const featured = [
+      { id: 1, name: "Classic Sneakers", price: 1200, img: "https://fellmonger.in/cdn/shop/products/FMBE00423_1_46c098c0-bd5c-45b0-8834-38c27440d75c.jpg?v=1742464775" },
+      { id: 2, name: "Leather Shoes", price: 2000, img: "https://www.shutterstock.com/image-photo/leather-laceup-shoes-minimalistic-creative-600nw-2471756315.jpg" },
+      { id: 3, name: "Running Shoes", price: 1500, img: "https://www.asics.co.in/media/catalog/product/1/0/1011b603_408_sl_lt_glb.jpg" },
+      { id: 4, name: "Canvas Sneakers", price: 1000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQleocj_DIKbBt8V0ex0f_PHh7SVxg1JHin7A&s" }];
+    const newArrivals = [
+      { id: 1, name: "Classic Sneakers", price: 1000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPJZ45YO5K4CJPeYXY9iJjQlXgnLClCCIyWQ&s" },
+      { id: 2, name: "Leather Shoes", price: 1500, img: "https://media.istockphoto.com/id/523113015/photo/mens-brown-shoes.jpg?s=612x612&w=0&k=20&c=3DL6Hz1Is_XaARpwTopjL_uVJFeXu0BWePYM0WT9GW0=" },
+      { id: 3, name: "Running Shoes", price: 1800, img: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/377758/01/sv01/fnd/IND/fmt/png/ForeverRun-NITRO%E2%84%A2-Women's-Running-Shoes" },
+      { id: 4, name: "Canvas Sneakers", price: 1000, img: "https://www.yourprint.in/new-admin-ajax.php?action=resize_outer_image&cfcache=all&url=med-s3/yP-mplace/Shoes/YPB08RB41YB3_1.jpg&resizeTo=600" },
+      // { id: 5, name: "High-top Sneakers", price: 1800, img: "https://cdn.shopify.com/s/files/1/0070/7032/products/nike-air-force-1-high-white-1_1024x1024.jpg" },
+      // { id: 6, name: "Slip-On Shoes", price: 1100, img: "https://cdn.shopify.com/s/files/1/0049/8248/8987/products/SlipOnShoes_1024x1024.jpg" },
+
+    ];
+
+    const bestSellers = [
+      { id: 7, name: "Formal Shoes", price: 2000, img: "https://kxadmin.metroshoes.com/product/19-6540/660/19-6540H11.jpg" },
+      { id: 8, name: "Running Sneakers", price: 1700, img: "https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ab132ade-35a9-47d1-af9a-66ad6f21ed45/NIKE+REVOLUTION+7+WIDE.png" },
+      { id: 9, name: "Casual Loafers", price: 1500, img: "https://www.thomascrick.com/upload/products/x_productImg_1734430827.jpg" },
+      { id: 10, name: "High-top Canvas Shoes", price: 1600, img: "https://converse.static.n7.io/media/catalog/product/cache/c2eb1f0db702462ce5dab3d57b75c6e4/5/6/560845c_e_107x1-web66.jpg" }
+    ];
+
+    const cartItems = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
+    let cart = [];
+
+    function renderProducts(list, id) {
+      const container = document.getElementById(id);
+      list.forEach(p => {
+        const card = document.createElement('div');
+        card.className = "product-card";
+        card.innerHTML = `<img src="${p.img}" alt="${p.name}"><h3>${p.name}</h3><p>₹${p.price}</p><button onclick="addToCart(${p.id},'${p.name}',${p.price})">Add to Cart</button>`;
+        container.appendChild(card);
+      });
+    }
+    renderProducts(featured, 'products-list');
+    renderProducts(newArrivals, 'new-products-list');
+    renderProducts(bestSellers, 'best-products-list');
+
+    function addToCart(id, name, price) { cart.push({ id, name, price }); updateCart(); alert(`${name} added to cart`); }
+    function updateCart() { cartItems.innerHTML = ""; let total = 0; cart.forEach((i, index) => { total += i.price; const li = document.createElement('li'); li.style.marginBottom = "8px"; li.innerHTML = `${i.name} - ₹${i.price} <button onclick="removeItem(${index})" style="background:red;color:white;border:none;border-radius:5px;padding:2px 5px;cursor:pointer;">X</button>`; cartItems.appendChild(li); }); cartTotal.textContent = total; cartCount.textContent = cart.length; }
+    function removeItem(index) { cart.splice(index, 1); updateCart(); }
+    function toggleCart() { const popup = document.getElementById('cart-popup'); popup.style.display = popup.style.display === "block" ? "none" : "block"; }
+    function checkout() { if (cart.length === 0) { alert("Cart is empty!"); } else { alert("Thank you for your purchase!"); cart = []; updateCart(); toggleCart(); } }
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) slide.classList.add('active');
+      });
+    }
+
+    // Auto slide every 5 seconds
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }, 5000);
+
+    // Initialize
+    showSlide(slideIndex);
+  </script>
 
 </body>
 
